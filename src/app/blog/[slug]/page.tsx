@@ -97,7 +97,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       )}
 
       <div style={{ fontSize: '1.125rem', lineHeight: '1.8' }}>
-        {post.body ? <PortableText value={post.body} /> : null}
+        {post.body ? (
+          <PortableText 
+            value={post.body} 
+            components={{
+              marks: {
+                link: ({ children, value }: any) => {
+                  const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
+                  return (
+                    <a 
+                      href={value?.href} 
+                      target={target} 
+                      rel={target === '_blank' ? 'noopener noreferrer' : undefined} 
+                      style={{ color: 'var(--primary)', textDecoration: 'underline', fontWeight: '500' }}
+                    >
+                      {children}
+                    </a>
+                  )
+                },
+              },
+            }} 
+          />
+        ) : null}
       </div>
 
       {post.clientBacklinks && post.clientBacklinks.length > 0 && (
