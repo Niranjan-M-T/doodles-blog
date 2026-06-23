@@ -10,8 +10,22 @@ export default async function Home() {
 
   return (
     <div className="container animate-fade-in" style={{ padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem)' }}>
-      <header style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 8vw, 5rem)' }}>
-        <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '800', letterSpacing: '-0.05em', marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--primary), var(--accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+      <header style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 8vw, 5rem)', position: 'relative' }}>
+        <div style={{ display: 'inline-block', padding: '0.25rem 1rem', backgroundColor: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary)', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: '600', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Insights & Updates
+        </div>
+        <h1 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '800', letterSpacing: '-0.05em', marginBottom: '1.5rem', color: 'var(--foreground)' }}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+            <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8" />
+            <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1" />
+            <path d="M2 21h20" />
+            <path d="M7 8v3" />
+            <path d="M12 8v3" />
+            <path d="M17 8v3" />
+            <path d="M7 4h.01" />
+            <path d="M12 4h.01" />
+            <path d="M17 4h.01" />
+          </svg>
           Doodles Blog
         </h1>
         <p style={{ fontSize: '1.25rem', color: 'var(--muted)', maxWidth: '600px', margin: '0 auto' }}>
@@ -33,6 +47,7 @@ export default async function Home() {
                 borderRadius: 'var(--radius)',
                 backgroundColor: 'var(--card-bg)',
                 boxShadow: 'var(--shadow)',
+                border: '1px solid var(--border)',
                 overflow: 'hidden',
               }}
             >
