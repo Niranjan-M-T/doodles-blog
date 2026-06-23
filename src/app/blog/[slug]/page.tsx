@@ -62,14 +62,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <article className="container animate-fade-in" style={{ padding: '4rem 2rem', maxWidth: '800px', margin: '0 auto' }}>
+    <article className="container animate-fade-in" style={{ padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem)', maxWidth: '800px', margin: '0 auto' }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <header style={{ marginBottom: '3rem', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>
+      <header style={{ marginBottom: 'clamp(2rem, 6vw, 3rem)', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 'clamp(1.75rem, 6vw, 2.5rem)', marginBottom: '1rem', color: 'var(--primary)' }}>
           {post.title}
         </h1>
         <p style={{ color: 'var(--muted)', fontSize: '1.1rem' }}>{post.excerpt}</p>
@@ -101,11 +101,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
 
       {post.clientBacklinks && post.clientBacklinks.length > 0 && (
-        <section style={{ marginTop: '4rem', padding: '2rem', backgroundColor: 'var(--card-bg)', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow)' }}>
+        <section style={{ marginTop: 'clamp(2.5rem, 8vw, 4rem)', padding: 'clamp(1.5rem, 4vw, 2rem)', backgroundColor: 'var(--card-bg)', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow)' }}>
           <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
             Featured Clients
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 250px), 1fr))', gap: '1.5rem' }}>
             {post.clientBacklinks.map((client: any) => (
               <a 
                 key={client.name} 

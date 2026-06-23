@@ -9,9 +9,9 @@ export default async function Home() {
   const posts = await client.fetch(ALL_POSTS_QUERY)
 
   return (
-    <div className="container animate-fade-in" style={{ padding: '4rem 2rem' }}>
-      <header style={{ textAlign: 'center', marginBottom: '5rem' }}>
-        <h1 style={{ fontSize: '4rem', fontWeight: '800', letterSpacing: '-0.05em', marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--primary), var(--accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+    <div className="container animate-fade-in" style={{ padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem)' }}>
+      <header style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 8vw, 5rem)' }}>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '800', letterSpacing: '-0.05em', marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--primary), var(--accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           Doodles Blog
         </h1>
         <p style={{ fontSize: '1.25rem', color: 'var(--muted)', maxWidth: '600px', margin: '0 auto' }}>
@@ -20,7 +20,7 @@ export default async function Home() {
       </header>
 
       <main>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '2rem' }}>
           {posts.map((post: any) => (
             <Link 
               key={post._id} 
