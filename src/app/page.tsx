@@ -1,0 +1,93 @@
+import { client } from '@/sanity/lib/client'
+import { ALL_POSTS_QUERY } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/image'
+import Link from 'next/link'
+
+export const revalidate = 60 // Revalidate every minute
+
+export default async function Home() {
+  const posts = await client.fetch(ALL_POSTS_QUERY)
+
+  return (
+    <div className="container animate-fade-in" style={{ padding: '4rem 2rem' }}>
+      <header style={{ textAlign: 'center', marginBottom: '5rem' }}>
+        <h1 style={{ fontSize: '4rem', fontWeight: '800', letterSpacing: '-0.05em', marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--primary), var(--accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          Doodles Blog
+        </h1>
+        <p style={{ fontSize: '1.25rem', color: 'var(--muted)', maxWidth: '600px', margin: '0 auto' }}>
+          Insights, case studies, and updates from our agency. Discover how we help our clients grow and succeed in the digital landscape.
+        </p>
+      </header>
+
+      <main>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
+          {posts.map((post: any) => (
+            <Link 
+              key={post._id} 
+              href={`/blog/${post.slug}`}
+              style={{
+                display: 'block',
+                textDecoration: 'none',
+                color: 'inherit',
+                borderRadius: 'var(--radius)',
+                backgroundColor: 'var(--card-bg)',
+                boxShadow: 'var(--shadow)',
+                overflow: 'hidden',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-hover)'
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow)'
+              }}
+            >
+              {post.mainImage ? (
+                <div style={{ height: '200px', overflow: 'hidden' }}>
+                  <img 
+                    src={urlForImage(post.mainImage).width(600).height(400).url()} 
+                    alt={post.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              ) : (
+                <div style={{ height: '200px', backgroundColor: 'var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ color: 'var(--muted)' }}>No Image</span>
+                </div>
+              )}
+              
+              <div style={{ padding: '1.5rem' }}>
+                <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--primary)' }}>
+                  {post.title}
+                </h2>
+                <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginBottom: '1rem', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                  {post.excerpt}
+                </p>
+                
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    {post.author?.image && (
+                      <img 
+                        src={urlForImage(post.author.image).width(30).height(30).url()} 
+                        alt={post.author.name}
+                        style={{ width: '30px', height: '30px', borderRadius: '50%', objectFit: 'cover' }}
+                      />
+                    )}
+                    <span style={{ fontSize: '0.85rem', fontWeight: '500' }}>
+                      {post.author?.name || 'Admin'}
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
+                    {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : 'Draft'}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </main>
+    </div>
+  )
+}
