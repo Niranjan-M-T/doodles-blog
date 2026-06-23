@@ -133,6 +133,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 href={client.website} 
                 target="_blank" 
                 rel="noopener noreferrer"
+                className="client-card"
                 style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
@@ -140,15 +141,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   padding: '1rem', 
                   border: '1px solid var(--border)',
                   borderRadius: 'var(--radius)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                  e.currentTarget.style.boxShadow = 'var(--shadow-hover)'
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = 'none'
                 }}
               >
                 {client.logo && (

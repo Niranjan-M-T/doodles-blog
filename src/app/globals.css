@@ -65,3 +65,20 @@ a:hover {
 .animate-fade-in {
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Animations & Hover Effects */
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.client-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.client-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}

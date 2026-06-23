@@ -25,6 +25,7 @@ export default async function Home() {
             <Link 
               key={post._id} 
               href={`/blog/${post.slug}`}
+              className="hover-card"
               style={{
                 display: 'block',
                 textDecoration: 'none',
@@ -33,15 +34,6 @@ export default async function Home() {
                 backgroundColor: 'var(--card-bg)',
                 boxShadow: 'var(--shadow)',
                 overflow: 'hidden',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)'
-                e.currentTarget.style.boxShadow = 'var(--shadow-hover)'
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = 'var(--shadow)'
               }}
             >
               {post.mainImage ? (
